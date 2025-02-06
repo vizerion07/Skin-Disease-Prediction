@@ -19,23 +19,7 @@ python main.py
 
 4. Click on the right hand box and upload any image. On clicking the detect button , you will be able to see the prediction
 
-# In Case there is some issue while running it on MacBook, Try creating a virtual evironment, manually activating it.
 
-python -m venv venv
-venv\Scripts\activate
-
-# Again install dependencies
-# then run these 
-
-source ./venv/bin/activate
-pip install flask
-
-# But if the virtual environment is stillnot active
-
-run these ->
-
-source ./venv/bin/activate
-venv/bin/python3 main.py
 # Libraries and Tools Used
 
 - Tensorflow - Constructing the CNN
