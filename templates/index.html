@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Disease Classification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <nav>
+  
+        <div id="titlehead">
+            Skin Disease Prediciton</div>
+
+    </nav>
+
+    <div id="subheading">"Identify Skin Conditions Instantly and Accurately"</div>
+
+
+
+    <div class="image-gallery">
+        <img src="{{ url_for('static', filename='skin4.jpeg') }}" alt="Skin Image 1">
+        <img src="{{ url_for('static', filename='skin3.avif') }}" alt="Skin Image 2">
+        <img src="{{ url_for('static', filename='skin2.avif') }}" alt="Skin Image 3">
+    </div>
+
+
+
+
+    <div class="about-section">
+        <h3>ABOUT THIS WEBSITE</h3>
+        <div class="about-content">
+            <p>
+                This website leverages the power of Deep Learning using Convolutional Neural Networks (CNNs) 
+                to classify a given image into one of 8 skin diseases and 1 class for Healthy Skin. This project demonstrates how CNNs can 
+                be implemented effectively for medical imaging tasks.
+            </p>
+            <p>These skin diseases include:</p>
+            <div class="lists">
+                <ul>
+                    <li>Cellulitis</li>
+                    <li>Impetigo</li>
+                    <li>Athlete-Foot</li>
+                    <li>Nail-Fungus</li>
+                </ul>
+                <ul>
+                    <li>Ringworm</li>
+                    <li>Cutaneous-larva-migrans</li>
+                    <li>Chickenpox</li>
+                    <li>Shingles</li>
+                </ul>
+            </div>
+            <div class="Healthy">
+                <ul>
+                    <li>Healthy</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <form action="/" method="post" enctype="multipart/form-data" id="upload-form">
+            <div id="drop-area" onclick="triggerFileInput()">
+                <p>Paste your image here or click to upload</p>
+                <input type="file" id="file-input" name="file" accept="image/*" required style="display: none;">
+            </div>
+            <button type="submit">DETECT</button>
+        </form>
+
+        <img id="preview" src="" alt="Image preview">
+
+        {% if prediction %}
+            <div class="result">
+                <h2>Prediction: {{ prediction }}</h2>
+            </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        <!-- <p>&copy; 2024 Skin Disease Prediction. All rights reserved.</p> -->
+         <p>Made with ❤️ by Shivyansh Garg</p>
+    </footer>
+
+    <script>
+        const fileInput = document.getElementById('file-input');
+        const preview = document.getElementById('preview');
+
+        // Trigger file input click on drop-area click
+        function triggerFileInput() {
+            fileInput.click();
+        }
+
+        // Display image preview
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
